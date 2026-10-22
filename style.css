@@ -96,20 +96,25 @@ img {
    BACKGROUND GLOW
 ========================= */
 
+
 .cursor-glow {
     position: fixed;
-    z-index: -1;
+    z-index: 0;
     top: 40%;
     left: 50%;
-    width: 420px;
-    height: 420px;
+    width: 520px;
+    height: 520px;
     border-radius: 50%;
     background: radial-gradient(circle,
-            rgba(110, 110, 110, 0.08),
-            transparent 70%);
+            rgba(160, 185, 220, 0.19) 0%,
+            rgba(125, 155, 200, 0.10) 28%,
+            rgba(100, 130, 180, 0.04) 52%,
+            transparent 72%);
     pointer-events: none;
     transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
 }
+
 
 /* =========================
    HEADER AND NAVIGATION
@@ -756,27 +761,32 @@ img {
     font-size: 11px;
 }
 
+
 /* =========================
-   PROJECTS
+   PROJECTS — ARCHITECTURE HOVER REVEAL
 ========================= */
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    gap: 24px;
+    align-items: stretch;
 }
 
 .project-card {
+    position: relative;
+    isolation: isolate;
     display: flex;
+    min-width: 0;
+    min-height: 0;
+    aspect-ratio: 720 / 951;
     flex-direction: column;
-    min-height: 350px;
+    overflow: hidden;
     padding: 26px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background:
-        radial-gradient(ellipse at top right, #252525, transparent 50%),
-        var(--surface);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    background: var(--surface);
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .project-card:hover {
@@ -784,8 +794,89 @@ img {
     border-color: #505050;
 }
 
+/* Keep project details visible on the front */
+
+.project-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    transition:
+        opacity 0.35s ease,
+        transform 0.45s ease;
+}
+
+/* Full-card image reveal */
+
+.project-architecture-reveal {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    overflow: hidden;
+    border: none;
+    border-radius: inherit;
+    background: #0b0f14;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    pointer-events: none;
+}
+
+
+.project-architecture-reveal img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    object-position: center;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+/* Small hint visible over the revealed image */
+
+.architecture-close-hint {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    padding: 5px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    background: rgba(10, 10, 10, 0.8);
+    color: #eee;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+/* Hover and keyboard focus */
+
+.project-card:hover .project-architecture-reveal,
+.project-card:focus-within .project-architecture-reveal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.project-card:hover .project-content {
+    opacity: 0;
+    transform: scale(0.98);
+}
+
+.project-card:hover .architecture-close-hint,
+.project-card:focus-within .architecture-close-hint {
+    opacity: 1;
+}
+
+/* Project details */
+
 .project-top {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 22px;
@@ -802,6 +893,7 @@ img {
     display: grid;
     width: 38px;
     height: 38px;
+    flex-shrink: 0;
     place-items: center;
     border: 1px solid #414141;
     border-radius: 10px;
@@ -814,6 +906,7 @@ img {
     margin: 0 0 12px;
     font-size: 20px;
     letter-spacing: -0.5px;
+    line-height: 1.4;
 }
 
 .project-card p {
@@ -824,11 +917,19 @@ img {
 }
 
 .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
     margin-top: auto;
     margin-bottom: 23px;
 }
 
 .project-tags span {
+    padding: 5px 10px;
+    border: 1px solid #353535;
+    border-radius: 6px;
+    background: #171717;
+    color: #c9c9c9;
     font-size: 10px;
 }
 
@@ -841,6 +942,40 @@ img {
 
 .project-link:hover {
     color: #aaa;
+}
+
+/* Responsive layout */
+
+@media (max-width: 720px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        min-height: 380px;
+        padding: 21px;
+    }
+
+    .project-card h3 {
+        font-size: 19px;
+    }
+
+    .project-architecture-reveal img {
+        object-fit: contain;
+    }
+}
+
+/* Touchscreen devices: tap to reveal */
+
+@media (hover: none) {
+    .project-card:active .project-architecture-reveal {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .project-card:active .project-content {
+        opacity: 0;
+    }
 }
 
 /* =========================
@@ -1645,3 +1780,16 @@ img {
 }
 
 /* Keep the SIRI card and all card backs unchanged */
+
+
+
+@media (max-width: 720px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        aspect-ratio: 720 / 951;
+        padding: 21px;
+    }
+}

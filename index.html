@@ -397,178 +397,91 @@
 
 
 
+
         <!-- PROJECTS -->
         <section class="section" id="projects">
             <div class="container">
                 <p class="section-eyebrow">HANDS-ON WORK</p>
                 <h2 class="section-title">Featured Projects</h2>
-                <p class="section-description">Practical projects built to develop and demonstrate DevOps skills.</p>
+                <p class="section-description">
+                    Practical projects built to develop and demonstrate DevOps skills.
+                </p>
 
                 <div class="projects-grid">
 
                     <!-- PROJECT 01: SERVICE STATUS API -->
                     <article class="project-card">
-                        <div class="architecture-diagram">
-                            <div class="architecture-title">
-                                <span class="architecture-dot"></span>
-                                SERVICE STATUS API
-                            </div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">01</span>
-                                <div>
-                                    <b>Python REST API</b>
-                                    <small>/health endpoint · Non-root user</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">02</span>
-                                <div>
-                                    <b>Docker Image</b>
-                                    <small>Containerization · Health check</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node flow-highlight">
-                                <span class="flow-icon">03</span>
-                                <div>
-                                    <b>GitHub Actions</b>
-                                    <small>Automated health tests and image publishing</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">04</span>
-                                <div>
-                                    <b>GitHub Container Registry</b>
-                                    <small>Published container image · GHCR</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-environments">
-                                <div class="flow-environment">
-                                    <b>STAGING</b>
-                                    <small>Port 8080</small>
-                                </div>
-                                <div class="flow-environment">
-                                    <b>PRODUCTION</b>
-                                    <small>Port 8081</small>
-                                </div>
-                            </div>
-                            <p class="architecture-caption">TEST → BUILD → PUBLISH → RUN</p>
+                        <div class="project-architecture-reveal">
+                            <img src="service-status-api-architecture.png"
+                                alt="Dockerized Service Status API architecture, showing GitHub Actions, container registry, staging and production" />
+                            <span class="architecture-close-hint">Move cursor away to return</span>
                         </div>
 
-                        <div class="project-top">
-                            <span class="project-number">PROJECT 01</span>
-                            <span class="project-symbol">01</span>
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="project-number">PROJECT 01</span>
+                                <span class="project-symbol">01</span>
+                            </div>
+
+                            <h3>Dockerize a Service Status API</h3>
+
+                            <p>
+                                Built a containerized Python status API with configurable
+                                staging and production environments, a non-root user and
+                                Docker health checks. GitHub Actions tests the application
+                                and publishes the image to GitHub Container Registry.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Docker</span>
+                                <span>Python</span>
+                                <span>GitHub Actions</span>
+                                <span>GHCR</span>
+                            </div>
+
+                            <a class="project-link" href="https://github.com/SuhaNasreen/docker-status-api"
+                                target="_blank" rel="noopener">
+                                View on GitHub ↗
+                            </a>
                         </div>
-                        <h3>Dockerize a Service Status API</h3>
-                        <p>Built a containerized Python status API with configurable staging and production
-                            environments, a non-root user and Docker health checks. GitHub Actions tests the application
-                            and publishes the image to GitHub Container Registry.</p>
-                        <div class="project-tags">
-                            <span>Docker</span><span>Python</span><span>GitHub Actions</span><span>GHCR</span>
-                        </div>
-                        <a class="project-link" href="https://github.com/SuhaNasreen/docker-status-api" target="_blank"
-                            rel="noopener">View on GitHub ↗</a>
                     </article>
 
                     <!-- PROJECT 02: SERVICEPULSE -->
                     <article class="project-card">
-                        <div class="architecture-diagram">
-                            <div class="architecture-title">
-                                <span class="architecture-dot"></span>
-                                SERVICEPULSE · KUBERNETES
-                            </div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">01</span>
-                                <div>
-                                    <b>Website Files</b>
-                                    <small>HTML · CSS · Nginx</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">02</span>
-                                <div>
-                                    <b>Docker Image</b>
-                                    <small>Versioned releases · v1 → v2</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node flow-highlight">
-                                <span class="flow-icon">03</span>
-                                <div>
-                                    <b>Kubernetes Deployment</b>
-                                    <small>Desired state · 3 replicas</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-pods">
-                                <div class="flow-pod">
-                                    <span>▦</span>
-                                    <b>Pod 1</b>
-                                    <small>Running</small>
-                                </div>
-                                <div class="flow-pod">
-                                    <span>▦</span>
-                                    <b>Pod 2</b>
-                                    <small>Running</small>
-                                </div>
-                                <div class="flow-pod">
-                                    <span>▦</span>
-                                    <b>Pod 3</b>
-                                    <small>Running</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-arrow">↓</div>
-
-                            <div class="flow-node">
-                                <span class="flow-icon">04</span>
-                                <div>
-                                    <b>Kubernetes Service</b>
-                                    <small>ClusterIP · Access to Pods</small>
-                                </div>
-                            </div>
-
-                            <div class="flow-features">
-                                <span>Readiness probes</span>
-                                <span>Self-healing</span>
-                                <span>Rolling updates</span>
-                            </div>
-                            <p class="architecture-caption">PACKAGE → DEPLOY → SCALE → UPDATE</p>
+                        <div class="project-architecture-reveal">
+                            <img src="servicepulse-architecture.png"
+                                alt="ServicePulse Docker and Kubernetes architecture showing a three-replica deployment, Pods and Kubernetes Service" />
+                            <span class="architecture-close-hint">Move cursor away to return</span>
                         </div>
 
-                        <div class="project-top">
-                            <span class="project-number">PROJECT 02</span>
-                            <span class="project-symbol">02</span>
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="project-number">PROJECT 02</span>
+                                <span class="project-symbol">02</span>
+                            </div>
+
+                            <h3>ServicePulse — Kubernetes Dashboard</h3>
+
+                            <p>
+                                Packaged a static operations dashboard as a versioned Docker
+                                image and deployed it to local Kubernetes using Deployment
+                                and Service YAML manifests. Practised scaling, self-healing
+                                after Pod deletion, health probes, resource limits and
+                                rolling updates.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Docker</span>
+                                <span>Kubernetes</span>
+                                <span>YAML</span>
+                                <span>Nginx</span>
+                            </div>
+
+                            <a class="project-link" href="https://github.com/SuhaNasreen/servicepulse" target="_blank"
+                                rel="noopener">
+                                View on GitHub ↗
+                            </a>
                         </div>
-                        <h3>ServicePulse — Kubernetes Dashboard</h3>
-                        <p>Packaged a static operations dashboard as a versioned Docker image and deployed it to local
-                            Kubernetes using Deployment and Service YAML manifests. Practised scaling, self-healing
-                            after Pod deletion, health probes, resource limits and rolling updates.</p>
-                        <div class="project-tags">
-                            <span>Docker</span><span>Kubernetes</span><span>YAML</span><span>Nginx</span>
-                        </div>
-                        <a class="project-link" href="https://github.com/SuhaNasreen/servicepulse" target="_blank"
-                            rel="noopener">View on GitHub ↗</a>
                     </article>
 
                 </div>
